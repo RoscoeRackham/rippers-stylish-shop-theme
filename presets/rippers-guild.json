@@ -1,0 +1,20 @@
+{
+  "_comment": "Optional CONFIG-side copy for the Rippers/Guild register skin. The CSS skin handles the whole LOOK (palette, Pirata/Grenze/Plex type, geometry, hidden Korean) on its own; this file only re-words the shop's DOM-bound flavour copy (config.themeData) to neutral 1892 register text. Apply by hand in Shop Settings, or paste into config.themeData. It invents no lore — it sets the sourced date, a register purse label, and clears the demo Korean/Japanese labels. Fuller register prose (board header, subheader, seals, signature) is Austin's to write — field names listed under _themeDataFields. NOTE: this does NOT change the currency SYMBOL (10z -> pence/sterling); that is a world-level GlitchSmith currency setting — see _currency_manual below and the README.",
+  "themeData": {
+    "established": "Est. 1892",
+    "walletLabel": "On Account",
+    "walletChipId": "",
+    "navHeadKr": "",
+    "boardSubheader": "",
+    "mastheadSub": ""
+  },
+  "_currency_manual": "The shop quotes prices in the currency's own symbol/format, which comes from the GlitchSmith Library currency DEFINITION (a world setting), NOT from this shop's config — so the theme module/preset cannot reach it. The ruling (lodge-docs/CURRENCY-zenit-and-sterling.md) is 1 zenit = 1 penny. To make the shop quote 1892 sterling: in the world's GlitchSmith currency config, set the zenit currency's symbol to 'd' (pence) so '10z' reads '10d'; or define zenit as a compound penny/shilling/pound currency (12d=1s, 240d=£1) for full £/s/d display. The sheet stays in zenit either way (the ruling: the world quotes sterling, the sheet quotes zenit).",
+  "_themeDataFields": [
+    "boardHeader", "boardSubheader", "bottomSignature", "established",
+    "mastheadSub", "navHeadTitle", "navHeadKr", "ownerSeparator", "walletLabel",
+    "walletChipId", "sealApproved", "sealOut", "itemCountSuffix",
+    "charPlaceholderLabel", "emptyStateText", "keyNav", "keySelect", "keyCategory", "keyExit"
+  ],
+  "_note_korean": "The .cat-kr / .cn-kr / .row-kr / .kr sublabels are hidden by the CSS skin regardless; clearing navHeadKr here is belt-and-suspenders for config cleanliness. walletLabel/walletChipId shown here are the test-world demo values (ギルド残高 / Member №42); in a real world they are whatever the GM set, so the skin never overwrites them — this preset only offers register defaults.",
+  "_note_fonts": "Fonts need no preset: with the shop's default (empty) fontOverrides, the CSS names Pirata/Grenze/Plex directly. Only set config.fontOverrides['grid-guild'] if you want the config path to own the type law instead of the stylesheet."
+}

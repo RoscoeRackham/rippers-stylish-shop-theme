@@ -1,0 +1,44 @@
+{
+	"id": "rippers-stylish-shop-theme",
+	"title": "Rippers — Stylish Shop (Slash Register, Guild)",
+	"description": "An opt-in, look-only register skin for Stylish Shop's GUILD layout (grid family, the ledger / notice-board read) in the Rippers Unmasked \"Slash\" register: bone ground #e8dccb, blood #c8102a as attention/danger accent only, gold #efe0a0, ink #0b0607; Pirata One / Grenze Gotisch / IBM Plex Mono. A LIGHT re-ink of Guild's already-1892 material world (parchment / ink / brass / seal-red / wood / leather kept) plus register geometry (radius-0 plate rims, hard flat act-on shadows), the ink-prices rule (body-size numbers in mono ink; blood reserved for the focused/WANTED card, low/out-of-stock, and the active plate), and hidden Korean sublabels. Auto-applies to Guild shops on their default palette; opt a shop out by picking a native Guild palette (Thieves / Sacred / Druid). No mechanics, no transactions, no DOM rewrites. Designed for Stylish Shop 2.0.0. A personal-table module — not for redistribution.",
+	"version": "0.1.0",
+	"url": "https://github.com/RoscoeRackham/rippers-stylish-shop-theme",
+	"manifest": "https://github.com/RoscoeRackham/rippers-stylish-shop-theme/releases/latest/download/module.json",
+	"download": "https://github.com/RoscoeRackham/rippers-stylish-shop-theme/releases/latest/download/rippers-stylish-shop-theme.zip",
+	"compatibility": {
+		"minimum": "13.351",
+		"verified": "14.361"
+	},
+	"authors": [
+		{
+			"name": "Austin (cubemail.exe)"
+		}
+	],
+	"styles": [
+		"styles/fonts.css",
+		"styles/rippers-stylish-shop.css"
+	],
+	"esmodules": [
+		"scripts/rippers-stylish-shop-theme.mjs"
+	],
+	"relationships": {
+		"recommends": [
+			{
+				"id": "stylish-shop",
+				"type": "module",
+				"reason": "This module only restyles Stylish Shop's Guild layout; it has no effect unless Stylish Shop is installed and active. Designed against Stylish Shop 2.0.0."
+			},
+			{
+				"id": "glitchsmith-lib",
+				"type": "module",
+				"reason": "Stylish Shop 2.0.0's own required dependency; listed for completeness."
+			}
+		]
+	},
+	"flags": {
+		"rippers-stylish-shop-theme": {
+			"note": "Look-only skin scoped to .ss-shop-app.theme-grid-guild.palette-rippers. The esmodule adds the palette-rippers class to a Guild shop on its default palette (world setting 'autoApply', default true); a native Guild palette selection is the per-shop opt-out. Palette re-ink of Guild's --parchment/--brass/--seal-red/--ink to the Slash register; fonts win because the shop's default fontOverrides is empty. Verified by computed style + paint-check in the e2e-harness against Stylish Shop 2.0.0."
+		}
+	}
+}

@@ -1,0 +1,9 @@
+Rippers — Stylish Shop (Slash Register, Guild)
+A personal-table Foundry VTT module. Not for redistribution.
+
+Bundled fonts (fonts/*.woff2) — Grenze Gotisch, IBM Plex Mono, Pirata One, Spectral —
+are from Google Fonts under the SIL Open Font License 1.1 (https://openfontlicense.org),
+which permits bundling and redistribution. The OFL applies to those font files.
+
+This module only restyles the third-party "Stylish Shop" module via CSS and
+does not include or redistribute any Stylish Shop or glitchsmith-lib code or assets.

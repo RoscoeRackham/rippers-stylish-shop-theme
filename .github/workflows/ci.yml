@@ -1,0 +1,37 @@
+# CI (TEST-AUTOMATION-STRATEGY §4 — ported from rippers-guise Phase 1).
+# push/PR: repo sanity (declared files exist, no third-party code). release published: the
+# release-integrity gate against the just-published assets — red means the SHIPPED artifact is bad.
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+  release:
+    types: [published]
+
+jobs:
+  sanity:
+    if: github.event_name != 'release'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node tools/push-sanity.mjs
+
+  verify-release:
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node tools/verify-release.mjs "${{ github.event.release.tag_name }}"

@@ -1,0 +1,149 @@
+/* ============================================================================
+   rippers-stylish-shop-theme — the Lodge "Slash" register on Stylish Shop's
+   GUILD layout (grid family, the ledger / notice-board read).
+   Look-only. Scoped to .ss-shop-app.theme-grid-guild.palette-rippers, so it
+   acts ONLY on a Guild shop that the module has marked (see the .mjs). A GM who
+   picks any native Guild palette (thieves / sacred / druid) gets that instead —
+   that IS the per-shop opt-out (a palette class then sits on the root and the
+   .mjs does not add palette-rippers).
+
+   Guild was already an 1892 material world (parchment / ink / brass / seal-red /
+   wood / leather / lantern / serif), so this is a LIGHT re-ink, not a rebuild.
+   KEPT: the wood board, leather straps/pins, brass frame + rivets, lantern glow,
+   pennants, wax seal, the notice-board layout, kanji category labels.
+   OVERRODE (register law): parchment -> bone, seal-red -> register blood,
+   brass -> gold; radius 0 on plate rims; numbers -> Plex Mono ink (blood kept
+   only for the focused/WANTED card, low/out-of-stock, and the active plate);
+   display/names -> Pirata / Grenze; Korean sublabels hidden.
+   Palette values sourced from the Lodge register spec (SLASH-REGISTER-SPEC.md §2a).
+   ============================================================================ */
+
+/* ── PALETTE RE-INK (light; keep the wood/leather substrate untouched) ─────── */
+.ss-shop-app.theme-grid-guild.palette-rippers .ss-stage{
+  --parchment:      #e8dccb;   /* bone */
+  --parchment-rgb:  232, 220, 203;
+  --parchment-lt:   #f6ecd4;   /* bone-hot */
+  --parchment-dk:   #d8cbb2;
+  --parchment-edge: #6a5850;   /* bone-dark rule */
+  --parchment-edge-rgb: 106, 88, 80;
+  --brass:          #efe0a0;   /* glyph gold */
+  --brass-rgb:      239, 224, 160;
+  --brass-lt:       #f6ecd4;
+  --brass-glow:     #efe0a0;
+  --brass-glow-rgb: 239, 224, 160;
+  --seal-red:       #c8102a;   /* register blood — attention/danger accent only */
+  --seal-red-rgb:   200, 16, 42;
+  --seal-red-dk:    #8c1c26;
+  --ink:            #0b0607;
+  --ink-rgb:        11, 6, 7;
+  --cream:          #f6ecd4;
+  --cream-rgb:      246, 236, 212;
+  /* Guild sets --ss-accent-override inline on the root to its old seal-red
+     (#8b1a1a); the charter wordmark accent reads var(--ss-accent-override,
+     var(--seal-red)) and would bypass the re-ink. Redefine it here on the stage
+     so its whole subtree resolves the accent to register blood. The .mjs also
+     strips the inline value from the root as belt-and-suspenders. */
+  --ss-accent-override: var(--seal-red);
+}
+
+/* ── GEOMETRY: kill rounded rims on the plates (round hardware stays round) ── */
+.ss-shop-app.theme-grid-guild.palette-rippers .board-frame,
+.ss-shop-app.theme-grid-guild.palette-rippers .cat-nav,
+.ss-shop-app.theme-grid-guild.palette-rippers .cat-item,
+.ss-shop-app.theme-grid-guild.palette-rippers .cat-strap,
+.ss-shop-app.theme-grid-guild.palette-rippers .sell-info-card,
+.ss-shop-app.theme-grid-guild.palette-rippers .board-head,
+.ss-shop-app.theme-grid-guild.palette-rippers .board-wall,
+.ss-shop-app.theme-grid-guild.palette-rippers .item-row,
+.ss-shop-app.theme-grid-guild.palette-rippers .item-rows,
+.ss-shop-app.theme-grid-guild.palette-rippers .nav-head,
+.ss-shop-app.theme-grid-guild.palette-rippers .charter-row,
+.ss-shop-app.theme-grid-guild.palette-rippers [class*="bc-"],
+.ss-shop-app.theme-grid-guild.palette-rippers .coin-purse{
+  border-radius: 0 !important;
+}
+/* the two act-on plates get a hard flat offset shadow (register: solid block, no blur);
+   the wood board's own material depth is left alone (it reads 1892). */
+.ss-shop-app.theme-grid-guild.palette-rippers .cat-item.active,
+.ss-shop-app.theme-grid-guild.palette-rippers .item-row.focused{
+  box-shadow: 4px 4px 0 #08050a !important;
+}
+
+/* ── TYPE LAW (default fontOverrides is empty, so these win; a GM's own
+      fontOverrides selection would override, which is intended) ───────────── */
+/* Pirata One — the shout: shop wordmark, board headers, category (door) names,
+   the WANTED banner. .charter-name is the storefront wordmark ("shop name") and
+   .bc-banner is the WANTED card header — both are Guild's own display surfaces
+   (Cinzel by default) that sit outside the generic heading classes, so they are
+   named explicitly here. .charter-name .accent inherits, but carries its own
+   font-family in Guild's CSS, so it is named too. */
+.ss-shop-app.theme-grid-guild.palette-rippers .bh-title,
+.ss-shop-app.theme-grid-guild.palette-rippers .cn-title,
+.ss-shop-app.theme-grid-guild.palette-rippers .nav-head,
+.ss-shop-app.theme-grid-guild.palette-rippers .cat-name,
+.ss-shop-app.theme-grid-guild.palette-rippers .charter-name,
+.ss-shop-app.theme-grid-guild.palette-rippers .charter-name .accent,
+.ss-shop-app.theme-grid-guild.palette-rippers .bc-banner,
+.ss-shop-app.theme-grid-guild.palette-rippers [class*="signboard"],
+.ss-shop-app.theme-grid-guild.palette-rippers [class*="masthead"]{
+  font-family: 'Pirata One', serif !important;
+}
+/* Grenze Gotisch — names / titles / entity text */
+.ss-shop-app.theme-grid-guild.palette-rippers .row-name,
+.ss-shop-app.theme-grid-guild.palette-rippers .bc-name,
+.ss-shop-app.theme-grid-guild.palette-rippers .bc-title,
+.ss-shop-app.theme-grid-guild.palette-rippers .cat-desc,
+.ss-shop-app.theme-grid-guild.palette-rippers .row-rar,
+.ss-shop-app.theme-grid-guild.palette-rippers .sub-desc{
+  font-family: 'Grenze Gotisch', serif !important;
+}
+/* IBM Plex Mono — every number / code / quantity, tabular */
+.ss-shop-app.theme-grid-guild.palette-rippers .row-price,
+.ss-shop-app.theme-grid-guild.palette-rippers .bc-price,
+.ss-shop-app.theme-grid-guild.palette-rippers .bc-amt,
+.ss-shop-app.theme-grid-guild.palette-rippers .bh-shop-funds-amt,
+.ss-shop-app.theme-grid-guild.palette-rippers .coin-purse,
+.ss-shop-app.theme-grid-guild.palette-rippers .purse-amt,
+.ss-shop-app.theme-grid-guild.palette-rippers .amt-num,
+.ss-shop-app.theme-grid-guild.palette-rippers .ss-wallet-amount,
+.ss-shop-app.theme-grid-guild.palette-rippers [class*="-amt"],
+.ss-shop-app.theme-grid-guild.palette-rippers [class*="-funds"]{
+  font-family: 'IBM Plex Mono', monospace !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+/* ── INK PRICES: body-size numbers are ink data; blood is reserved for signals ─ */
+.ss-shop-app.theme-grid-guild.palette-rippers .row-price,
+.ss-shop-app.theme-grid-guild.palette-rippers .bh-shop-funds-amt{
+  color: var(--ink) !important;              /* register: numbers are ink data at body size */
+}
+/* attention: the focused / WANTED detail card price stays blood */
+.ss-shop-app.theme-grid-guild.palette-rippers .bc-price,
+.ss-shop-app.theme-grid-guild.palette-rippers .bc-amt{
+  color: var(--seal-red) !important;
+}
+/* danger: low / out-of-stock rows carry blood + the word (never colour alone) */
+.ss-shop-app.theme-grid-guild.palette-rippers .item-row.depleted .row-price,
+.ss-shop-app.theme-grid-guild.palette-rippers .item-row.depleted .row-name,
+.ss-shop-app.theme-grid-guild.palette-rippers .row-tag.depleted{
+  color: var(--seal-red) !important;
+}
+
+/* ── Korean sublabels: hidden for a clean register ledger (DOM text; the copy
+      preset also empties the *Kr fields, but hiding covers the look on its own) ─ */
+.ss-shop-app.theme-grid-guild.palette-rippers .cat-kr,
+.ss-shop-app.theme-grid-guild.palette-rippers .cn-kr,
+.ss-shop-app.theme-grid-guild.palette-rippers .row-kr,
+.ss-shop-app.theme-grid-guild.palette-rippers .kr{
+  display: none !important;
+}
+
+/* ── one register flourish: a thin bone frontier-slash under the postings head
+      (decoration only; pointer-events off so it never eats a click) ────────── */
+.ss-shop-app.theme-grid-guild.palette-rippers .board-head{ position: relative; }
+.ss-shop-app.theme-grid-guild.palette-rippers .board-head::after{
+  content: ""; position: absolute; left: 12px; right: 12px; bottom: -6px; height: 8px;
+  background: var(--brass);
+  clip-path: polygon(0% 46%,12% 30%,34% 42%,58% 26%,78% 40%,100% 28%,96% 54%,74% 66%,52% 52%,30% 70%,10% 58%);
+  opacity: .5; pointer-events: none;
+}
