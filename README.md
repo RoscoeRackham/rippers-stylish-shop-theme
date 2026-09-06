@@ -55,6 +55,21 @@ ruling (`lodge-docs/CURRENCY-zenit-and-sterling.md`) is **1 zenit = 1 penny**. T
 The sheet stays in zenit either way — per the ruling, *the world quotes sterling, the sheet quotes
 zenit.* This is the one step the module leaves to the GM (Austin sets it in the Forge world).
 
+## Make shops visible to players
+
+Shops are **GM-only by default** (`publicShop: false`) — a player's Shop Directory is empty until you
+opt a shop in. To let players browse and buy a shop on their own, turn on that shop's **Public / show
+in player directory** toggle in Shop Settings (config `publicShop: true`). It then appears in the
+player-facing Shop Directory and the GlitchSmith shop browser. Two more things a player needs, both
+standard: they must **own a character actor** (their PC) to buy with, and — because Stylish Shop runs
+every transaction through the active GM — **a GM must be online** when a player makes a purchase
+(browsing works with no GM connected). This is world/GM config, not something the skin sets.
+
+`presets/rippers-guild.json` carries `publicShop: true`, so applying that preset to a shop flips it
+public along with the register copy. That is safe to bundle because a preset only takes effect when a
+GM deliberately applies it to a specific shop — it grants nothing automatically and changes no actor
+permissions.
+
 ## Verify
 
 Staged and paint-checked in the `e2e-harness` against Stylish Shop 2.0.0: computed palette
